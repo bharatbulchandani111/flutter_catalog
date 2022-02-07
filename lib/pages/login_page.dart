@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/utils/routes.dart';
 
@@ -14,8 +12,11 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   String name = "";
+
+  bool changeButton = false;
   @override
   Widget build(BuildContext context) {
+    var done;
     return Material(
         color: Colors.white,
         child: SingleChildScrollView(
@@ -42,32 +43,38 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 20.0,
               ),
-              InkWell(
-                onTap: (){
-                  Navigator.pushNamed(context, MyRoutes.homeRoute);
-                },
-              
-              child: Container(
-                  width: 100,
-                  height: 50,
-                  
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Login",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
+              Material(
+                color: Colors.purpleAccent[700],
+                borderRadius: BorderRadius.circular(changeButton?50:8),
+                child: InkWell(
+                  onTap: () async {
+                    setState(() {
+                      changeButton = true;
+                    });
+                    await Future.delayed(Duration(seconds: 1));
+                    Navigator.pushNamed(context, MyRoutes.homeRoute);
+                  },
+                  child: AnimatedContainer(
+                    duration: Duration(seconds: 1),
+                    width: changeButton ? 50 : 100,
+                    height: 50,
+                    alignment: Alignment.center,
+                    child: changeButton
+                        ? Icon(
+                            Icons.done,
+                            color: Colors.white,
+                          )
+                        : Text(
+                            "Login",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                    
                   ),
-              
-                  decoration:
-                      BoxDecoration(color: Colors.greenAccent,borderRadius: BorderRadius.circular(10)),),)
-              // ElevatedButton(
-              //     onPressed: () {
-              //       Navigator.pushNamed(context, MyRoutes.homeRoute);
-              //     },
-              //     child: Text("Login"),
-              //     style: TextButton.styleFrom(minimumSize: Size(120, 40)))
+                ),
+              )
             ])
           ]),
         ));
