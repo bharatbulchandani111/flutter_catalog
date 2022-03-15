@@ -1,8 +1,6 @@
-// ignore_for_file: unnecessary_null_comparison
 
 import 'dart:convert';
 
-import 'package:flutter_catalog/models/catalog.dart';
 
 class CatalogModel {
   static List<Item> items = [];
