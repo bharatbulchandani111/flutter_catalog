@@ -1,14 +1,10 @@
-
 import 'dart:convert';
-
 
 class CatalogModel {
   static List<Item> items = [];
 }
 
 class Item {
-
-  
   final int id;
   final String name;
   final String desc;
@@ -23,8 +19,6 @@ class Item {
     required this.color,
     required this.image,
   });
-
-  
 
   Item copyWith({
     int? id,
@@ -46,14 +40,14 @@ class Item {
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
-  
+
     result.addAll({'id': id});
     result.addAll({'name': name});
     result.addAll({'desc': desc});
     result.addAll({'price': price});
     result.addAll({'color': color});
     result.addAll({'image': image});
-  
+
     return result;
   }
 
@@ -80,23 +74,23 @@ class Item {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is Item &&
-      other.id == id &&
-      other.name == name &&
-      other.desc == desc &&
-      other.price == price &&
-      other.color == color &&
-      other.image == image;
+        other.id == id &&
+        other.name == name &&
+        other.desc == desc &&
+        other.price == price &&
+        other.color == color &&
+        other.image == image;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      name.hashCode ^
-      desc.hashCode ^
-      price.hashCode ^
-      color.hashCode ^
-      image.hashCode;
+        name.hashCode ^
+        desc.hashCode ^
+        price.hashCode ^
+        color.hashCode ^
+        image.hashCode;
   }
 }
